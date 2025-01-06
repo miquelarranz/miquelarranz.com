@@ -1,19 +1,44 @@
 ---
-const pageTitle = "About Me";
+import { MainLayout } from "../components/main-layout";
+import { Header } from "../components/header";
+import { ContentLayout } from "../components/content-layout";
+import { Social } from "../components/social";
+import { Image } from "astro:assets";
+import homeImage from "../images/home.png";
+
+const pageTitle = "Miquel Arranz";
 ---
 
-<html lang="en" data-theme="nord">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <button class="btn btn-primary btn-sm">Click me</button>
-    <h1>Miquel Arranz</h1>
-  </body>
-</html>
+<MainLayout pageTitle={pageTitle} generatorContent={Astro.generator}>
+  <Header />
+  <ContentLayout>
+    <section
+      class="flex flex-col-reverse md:flex-row justify-center items-center gap-8 md:gap-4"
+    >
+      <div class="flex-1 flex flex-col gap-4">
+        <div>
+          <h1 class="prose prose-2xl">Hey! 👋 I'm Miquel Arranz</h1>
+          <p
+            class="prose no-underline prose-a:no-underline prose-a:text-blue-400 prose-a:hover:text-blue-600"
+          >
+            I'm currently working at <a
+              href="https://www.typeform.com/"
+              target="_blank">Typeform</a
+            > as a Senior Software Engineer
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <p class="prose no-underline">You can find me here:</p>
+          <Social />
+        </div>
+      </div>
+      <div class="flex flex-1 justify-center">
+        <Image
+          class="w-60 h-60 rounded-full border-4 border-blue-400 shadow-md"
+          src={homeImage}
+          alt="Miquel and Maia"
+        />
+      </div>
+    </section>
+  </ContentLayout>
+</MainLayout>
